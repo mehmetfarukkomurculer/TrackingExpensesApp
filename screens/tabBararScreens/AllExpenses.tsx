@@ -1,10 +1,10 @@
 import { View, Text } from "react-native";
-
+import ExpensesOutput from "../../components/ExpensesOutput/ExpensesOutput";
+import { useAppSelector } from "../../store/hooks";
 const AllExpenses = () => {
+  const expenses = useAppSelector((state) => state.expenses.expenses);
   return (
-    <View>
-      <Text>All Expenses</Text>
-    </View>
+    <ExpensesOutput periodName="Total" expenses={expenses}/>
   );
 };
 

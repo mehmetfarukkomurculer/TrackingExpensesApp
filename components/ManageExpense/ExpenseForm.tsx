@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: Colors.primary300,
+    color: Colors.primary700,
     textAlign: "center",
   },
   inputsRow: {

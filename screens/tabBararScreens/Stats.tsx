@@ -62,11 +62,10 @@ const Stats = () => {
           barBorderRadius={6}
           yAxisThickness={0}
           xAxisThickness={0}
-          yAxisIndicesColor={Colors.error500}
           isAnimated
-          yAxisTextStyle={{ color: Colors.secondary100 }}
+          yAxisTextStyle={{ color: Colors.primary1000 }}
           xAxisLabelTextStyle={{
-            color: Colors.secondary100,
+            color: Colors.primary1000,
             transform: [{ rotate: "300deg" }],
           }}
           hideRules
@@ -74,15 +73,8 @@ const Stats = () => {
           renderTooltip={(item: itemProp, index: number) => {
             return (
               <View
-                style={{
-                  marginBottom: 20,
-                  marginLeft: -6,
-                  backgroundColor: Colors.secondary100,
-                  paddingHorizontal: 6,
-                  paddingVertical: 4,
-                  borderRadius: 4,
-                }}>
-                <Text>${item.value.toFixed(2)}</Text>
+                style={styles.toolTipContainer}>
+                <Text style={styles.toolTipText}>${item.value.toFixed(2)}</Text>
               </View>
             );
           }}
@@ -97,7 +89,7 @@ export default Stats;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.secondary700,
+    backgroundColor: Colors.secondary100,
   },
   barChartStyle: {
     flex: 1,
@@ -106,4 +98,15 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 4,
   },
+  toolTipText: {
+    color: Colors.primary300,
+  },
+  toolTipContainer: {
+    marginBottom: 20,
+    marginLeft: -6,
+    backgroundColor: Colors.primary1000,
+    paddingHorizontal: 6,
+    paddingVertical: 4,
+    borderRadius: 4,
+  }
 });

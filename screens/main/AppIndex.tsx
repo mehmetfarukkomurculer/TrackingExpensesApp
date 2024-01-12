@@ -21,7 +21,7 @@ export default function AppIndex() {
             component={ManageExpense}
             options={{
               presentation: 'modal',
-              headerStyle: { backgroundColor: Colors.secondary600 },
+              headerStyle: { backgroundColor: Colors.primary1000},
               headerTintColor: Colors.secondary100
             }}
           />

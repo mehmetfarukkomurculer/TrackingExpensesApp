@@ -68,7 +68,7 @@ const ManageExpense = ({ route, navigation }: any) => {
         <View style={styles.deleteContainer}>
           <IconButton
             icon="trash"
-            color={Colors.primary900}
+            color={Colors.primary1000}
             size={48}
             onPress={deleteExpenseHandler}
           />
@@ -84,13 +84,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: Colors.secondary400,
+    backgroundColor: Colors.secondary100,
   },
   deleteContainer: {
     marginTop: 16,
     paddingTop: 8,
     borderTopWidth: 2,
-    borderColor: Colors.secondary700,
+    borderColor: Colors.primary1000,
     alignItems: "center",
   },
 });

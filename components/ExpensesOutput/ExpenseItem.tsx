@@ -54,13 +54,13 @@ const styles = StyleSheet.create({
   expenseItem: {
     padding: 12,
     marginVertical: 8,
-    backgroundColor: Colors.secondary500,
+    backgroundColor: Colors.secondary700,
     flexDirection: "row",
     justifyContent: "space-between",
     borderRadius: 6,
   },
   textBase: {
-    color: Colors.tertiary200,
+    color: Colors.secondary100,
   },
   descriptionText: {
     fontSize: 16,
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   amountContainer: {
     paddingHorizontal: 12,
     paddingVertical: 4,
-    backgroundColor: Colors.tertiary100,
+    backgroundColor: Colors.secondary100,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 4,

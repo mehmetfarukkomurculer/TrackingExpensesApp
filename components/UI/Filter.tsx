@@ -75,6 +75,6 @@ const styles = StyleSheet.create({
     minWidth: 60,
   },
   active: {
-    backgroundColor: Colors.tertiary800,
+    backgroundColor: Colors.primary1000,
   },
 });

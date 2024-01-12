@@ -14,16 +14,15 @@ function ExpensesOverview() {
       screenOptions={({navigation}) => ({
         tabBarShowLabel: false,
         tabBarStyle: styles.tabBarStyle,
-        tabBarActiveTintColor: Colors.primary1000,
         headerStyle: {
-          backgroundColor: Colors.secondary700,
+          backgroundColor: Colors.primary1000,
         },
-        headerTintColor: Colors.tertiary200,
+        headerTintColor: Colors.secondary100,
         headerRight: () => (
           <IconButton
             icon="add"
             size={24}
-            color={Colors.primary300}
+            color={Colors.secondary100}
             onPress={() => {
               navigation.navigate('ManageExpenses');
             }}
@@ -39,7 +38,7 @@ function ExpensesOverview() {
             <Ionicons
               name="calendar"
               size={size}
-              color={focused ? Colors.primary1000 : Colors.tertiary200}
+              color={focused ? Colors.primary500 : Colors.secondary100}
             />
           ),
           title: "All Expenses",
@@ -53,7 +52,7 @@ function ExpensesOverview() {
             <Ionicons
               name="stats-chart-outline"
               size={size}
-              color={focused ? Colors.primary1000 : Colors.tertiary200}
+              color={focused ? Colors.primary500 : Colors.secondary100}
             />
           ),
           title: "Statistics",
@@ -67,6 +66,6 @@ export default ExpensesOverview;
 
 const styles = StyleSheet.create({
   tabBarStyle: {
-    backgroundColor: Colors.secondary700,
+    backgroundColor: Colors.primary1000,
   },
 });

@@ -1,5 +1,4 @@
 import { FlatList, Text } from "react-native";
-import { ExpensesProps } from "../../interfaces/ExpensesProps";
 import ExpenseItem from "./ExpenseItem";
 import { TemporaryProps } from "../../interfaces/TemporaryProps";
 

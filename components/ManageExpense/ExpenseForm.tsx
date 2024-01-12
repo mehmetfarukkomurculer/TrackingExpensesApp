@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Alert } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import Input from "./Input";
 import { Colors } from "../../utils/colors";
 import { useState } from "react";
@@ -68,7 +68,6 @@ const ExpenseForm: React.FC<expenseFormProps> = ({
     console.log(amountIsValid, dateIsValid, descriptionIsValid);
   
     if (!amountIsValid || !dateIsValid || !descriptionIsValid) {
-      // Handle invalid input values
       setInputs((curInputs) => {
         return {
           amount: { value: curInputs.amount.value, isValid: amountIsValid },

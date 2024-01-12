@@ -2,7 +2,6 @@ import { View, StyleSheet, Text } from "react-native";
 import ExpensesSummary from "./ExpensesSummary";
 import ExpensesList from "./ExpensesList";
 import { Colors } from "../../utils/colors";
-import { ExpensesProps } from "../../interfaces/ExpensesProps";
 import { useEffect, useState } from "react";
 import { getDAteMinusDays } from "../../utils/date";
 import Filter from "../UI/Filter";

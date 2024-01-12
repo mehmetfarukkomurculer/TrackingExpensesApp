@@ -1,5 +1,4 @@
 import { View, Text, StyleSheet } from "react-native";
-import { ExpensesProps } from "../../interfaces/ExpensesProps";
 import { Colors } from "../../utils/colors";
 import { TemporaryProps } from "../../interfaces/TemporaryProps";
 

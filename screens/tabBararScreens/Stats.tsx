@@ -1,5 +1,4 @@
 import { View, Text, StyleSheet, Dimensions } from "react-native";
-import Filter from "../../components/UI/Filter";
 import { BarChart } from "react-native-gifted-charts";
 import { useAppSelector } from "../../store/hooks";
 import { Colors } from "../../utils/colors";

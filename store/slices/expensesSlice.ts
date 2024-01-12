@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ExpensesProps } from "../../interfaces/ExpensesProps";
 import { TemporaryProps } from "../../interfaces/TemporaryProps";
 
 

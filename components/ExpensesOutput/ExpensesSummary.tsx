@@ -1,10 +1,11 @@
 import { View, Text, StyleSheet } from "react-native";
 import { ExpensesProps } from "../../interfaces/ExpensesProps";
 import { Colors } from "../../utils/colors";
+import { TemporaryProps } from "../../interfaces/TemporaryProps";
 
 interface ExpensesSummaryProps {
   periodName: string;
-  expenses: ExpensesProps[];
+  expenses: TemporaryProps[];
 }
 
 const ExpensesSummary: React.FC<ExpensesSummaryProps> = ({

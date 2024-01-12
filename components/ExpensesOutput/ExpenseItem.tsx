@@ -8,7 +8,7 @@ interface ExpenseItemProps {
   id: string;
   description: string;
   amount: number;
-  date: Date;
+  date: string;
 }
 
 const ExpenseItem: React.FC<ExpenseItemProps> = ({
@@ -23,6 +23,8 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({
     // Navigate to ManageExpenses screen with expenseId parameter
     navigation.navigate("ManageExpenses", { expenseId: id });
   }
+
+  const convertedDate = new Date(date);
   return (
     <Pressable
       onPress={expensePressHandler}
@@ -33,7 +35,7 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({
           <Text style={[styles.textBase, styles.descriptionText]}>
             {description}
           </Text>
-          <Text style={styles.textBase}>{getFormattedDate(date)}</Text>
+          <Text style={styles.textBase}>{getFormattedDate(convertedDate)}</Text>
         </View>
         <View style={styles.amountContainer}>
           <Text style={styles.amountText}>${amount.toFixed(2)}</Text>

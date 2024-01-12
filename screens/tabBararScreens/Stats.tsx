@@ -4,7 +4,8 @@ import Filter from "../../components/UI/Filter";
 const Stats = () => {
   return (
     <View>
-      
+      <Text>TODO: use bar chart library for this screen.</Text>
+      <Text>Call filte rmethods. add nice animations for bars.</Text>
       <Text>Stats Screen</Text>
     </View>
   );

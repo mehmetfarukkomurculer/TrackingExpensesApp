@@ -52,6 +52,48 @@ const initialState: expensesState = {
       amount: 14.99,
       date: new Date("2023-11-01").toISOString(),
     },
+    {
+      id: "e8",
+      description: "jan test",
+      amount: 150,
+      date: new Date("2023-01-01").toISOString(),
+    },
+    {
+      id: "e9",
+      description: "feb test",
+      amount: 160,
+      date: new Date("2023-02-01").toISOString(),
+    },
+    {
+      id: "e10",
+      description: "march test",
+      amount: 170,
+      date: new Date("2023-03-01").toISOString(),
+    },
+    {
+      id: "e11",
+      description: "july test",
+      amount: 180,
+      date: new Date("2023-07-01").toISOString(),
+    },
+    {
+      id: "e12",
+      description: "sep test",
+      amount: 200,
+      date: new Date("2023-09-01").toISOString(),
+    },
+    {
+      id: "e13",
+      description: "dec test",
+      amount: 240,
+      date: new Date("2023-12-01").toISOString(),
+    },
+    {
+      id: "e14",
+      description: "jun test",
+      amount: 100,
+      date: new Date("2023-06-01").toISOString(),
+    },
   ],
 };
 

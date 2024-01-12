@@ -26,6 +26,18 @@ export const Colors = {
     error500: '#D24545',
     error100: '#df7c7c',
     
+    stats1: '#B15EFF',
+    stats2: '#FFA33C',
+    stats3: '#FFFB73',
+    stats4: '#DA0C81',
+    stats5: '#FFE4D6',
+    stats6: '#BF3131',
+    stats7: '#739072',
+    stats8: '#86B6F6',
+    stats9: '#DBCC95',
+    stats10: '#A1EEBD',
+    stats11: '#4CB9E7',
+    stats12: '#FF9BD2',
   };
   
   // Guide

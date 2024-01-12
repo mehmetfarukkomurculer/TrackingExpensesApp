@@ -5,12 +5,14 @@ import {
   StyleSheet,
   StyleProp,
   ViewStyle,
+  GestureResponderEvent,
 } from "react-native";
 import { Colors } from "../../utils/colors";
+import { ExpenseProp } from "../../interfaces/ExpenseProp";
 
 interface ButtonProps {
   buttonText: string;
-  onPress: () => void;
+  onPress: (expenseData?: ExpenseProp) => void;
   mode?: string;
   style?: StyleProp<ViewStyle>;
 }
@@ -21,10 +23,14 @@ const Button: React.FC<ButtonProps> = ({
   mode,
   style,
 }) => {
+  const handlePress = (event: GestureResponderEvent) => {
+    // Call your onPress function with or without an argument based on your needs
+    onPress(); // or onPress(yourExpenseData);
+  };
   return (
     <View style={style}>
       <Pressable
-        onPress={onPress}
+        onPress={handlePress}
         style={({ pressed }) => pressed && styles.pressed}
       >
         <View style={[styles.buttonContainer, mode === "flat" && styles.flat]}>

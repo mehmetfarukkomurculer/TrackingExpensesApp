@@ -22,6 +22,10 @@ export const Colors = {
     tertiary400: '#aca8a6',
     tertiary200: '#ddd8d6',
     tertiary100: '#f6f1ee',
+
+    error500: '#D24545',
+    error100: '#df7c7c',
+    
   };
   
   // Guide

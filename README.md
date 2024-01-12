@@ -15,7 +15,7 @@ An Expense Tracker Application built with React Native, TypeScript, and Redux. T
 - React Native
 - TypeScript
 - Redux
-- [React Native Gifted Charts](https://gifted-charts.web.app/) for bar chart visualization
+- [React Native Gifted Charts](https://gifted-charts.web.app/barchart) for bar chart visualization
 
 ## Screenshots and Video
 

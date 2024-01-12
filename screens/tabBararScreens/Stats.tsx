@@ -1,10 +1,18 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
 import Filter from "../../components/UI/Filter";
 import { BarChart } from "react-native-gifted-charts";
 import { useAppSelector } from "../../store/hooks";
 import { Colors } from "../../utils/colors";
 import { TemporaryProps } from "../../interfaces/TemporaryProps";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+const height = Dimensions.get("window").height;
+
+interface itemProp {
+  value: number;
+  label: string;
+  frontColor: string;
+}
 
 const getMonthlyExpenses = (expenses: TemporaryProps[], monthIndex: number) => {
   return expenses.filter((expense) => {
@@ -15,7 +23,7 @@ const getMonthlyExpenses = (expenses: TemporaryProps[], monthIndex: number) => {
 
 const Stats = () => {
   const expenses = useAppSelector((state) => state.expenses.expenses);
-
+  const [expensesState, setExpensesState] = useState(expenses);
   const months = [
     "Jan",
     "Feb",
@@ -31,8 +39,12 @@ const Stats = () => {
     "Dec",
   ];
 
+  useEffect(() => {
+    setExpensesState(expenses);
+  }, [expenses]);
+
   const barData = months.map((month, index) => {
-    const monthlyExpenses = getMonthlyExpenses(expenses, index);
+    const monthlyExpenses = getMonthlyExpenses(expensesState, index);
     return {
       value: monthlyExpenses.reduce((sum, expense) => sum + expense.amount, 0),
       label: month,
@@ -42,21 +54,39 @@ const Stats = () => {
 
   return (
     <View style={styles.container}>
-      <Text>TODO: use bar chart library for this screen.</Text>
-      <Text>Call filter methods. add nice animations for bars.</Text>
       <View style={styles.barChartStyle}>
         <BarChart
           data={barData}
+          height={height / 2}
           frontColor={"lightgray"}
-          barWidth={20}
+          barWidth={25}
           barBorderRadius={6}
           yAxisThickness={0}
           xAxisThickness={0}
           yAxisIndicesColor={Colors.error500}
           isAnimated
           yAxisTextStyle={{ color: Colors.secondary100 }}
-          xAxisLabelTextStyle={{ color: Colors.secondary100 }}
+          xAxisLabelTextStyle={{
+            color: Colors.secondary100,
+            transform: [{ rotate: "300deg" }],
+          }}
           hideRules
+          spacing={5}
+          renderTooltip={(item: itemProp, index: number) => {
+            return (
+              <View
+                style={{
+                  marginBottom: 20,
+                  marginLeft: -6,
+                  backgroundColor: Colors.secondary100,
+                  paddingHorizontal: 6,
+                  paddingVertical: 4,
+                  borderRadius: 4,
+                }}>
+                <Text>${item.value.toFixed(2)}</Text>
+              </View>
+            );
+          }}
         />
       </View>
     </View>
@@ -71,6 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.secondary700,
   },
   barChartStyle: {
+    flex: 1,
     marginHorizontal: 4,
     borderRadius: 8,
     paddingVertical: 16,

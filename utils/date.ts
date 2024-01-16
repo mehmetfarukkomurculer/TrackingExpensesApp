@@ -5,7 +5,7 @@ export function getFormattedDate(date: Date) {
     day: "2-digit",
   };
 
-  return date.toLocaleString("en-GB", options);
+  return date.toLocaleString("en-CA", options);
 }
 
 export function getDAteMinusDays(date: Date, days: number) {

@@ -5,6 +5,7 @@ import { useState } from "react";
 import Button from "../UI/Button";
 import { ExpenseProp } from "../../interfaces/ExpenseProp";
 import { TemporaryProps } from "../../interfaces/TemporaryProps";
+import { getFormattedDate } from "../../utils/date";
 
 interface expenseFormProps {
   onCancel: () => void;
@@ -41,31 +42,28 @@ const ExpenseForm: React.FC<expenseFormProps> = ({
       };
     });
   }
-  let inpValues = {
-    amount: inputs.amount.value,
+  
+  /*let inpValues = {
+    amount: makeCommaDotAmount,
     date: inputs.date.value,
     description: inputs.description.value,
-  };
+  };*/
 
   function submitHandler() {
-  
-    const amount = inputs.amount.value;
+    const makeCommaDotAmount = inputs.amount.value.replace(/,/g, '.');
+    const amount = makeCommaDotAmount;
     const date = inputs.date.value;
     const description = inputs.description.value;
-  
+    
     const expenseData = {
       amount: amount,
-      date: new Date(date).toString(),
+      date: date,
       description: description,
     };
-  
-    console.log(expenseData);
-  
+    const dateForCheck = new Date(expenseData.date).toString();
     const amountIsValid = !isNaN(+amount) && +amount > 0;
-    const dateIsValid = expenseData.date !== 'Invalid Date';
+    const dateIsValid = (dateForCheck !== 'Invalid Date') && expenseData.date[4] === '-' && expenseData.date[7] === '-';
     const descriptionIsValid = description.trim().length > 0;
-  
-    console.log(amountIsValid, dateIsValid, descriptionIsValid);
   
     if (!amountIsValid || !dateIsValid || !descriptionIsValid) {
       setInputs((curInputs) => {
@@ -97,9 +95,9 @@ const ExpenseForm: React.FC<expenseFormProps> = ({
           label="Amount"
           invalid={!inputs.amount.isValid}
           textInputConfig={{
-            keyboardType: "decimal-pad",
+            keyboardType: "numeric",
             onChangeText: inputChangedHandler.bind(this, "amount"),
-            value: inputs.amount.value,
+            value: (parseFloat(inputs.amount.value).toFixed(2)).toString(),
           }}
           style={styles.rowInput}
         />
@@ -110,7 +108,7 @@ const ExpenseForm: React.FC<expenseFormProps> = ({
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
             onChangeText: inputChangedHandler.bind(this, "date"),
-            value: inputs.date.value,
+            value: getFormattedDate(new Date(inputs.date.value)),
           }}
           style={styles.rowInput}
         />

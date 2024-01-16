@@ -1,5 +1,5 @@
 export interface ExpenseProp {
     description: string,
-    amount: string,
+    amount: number,
     date: string,
 }

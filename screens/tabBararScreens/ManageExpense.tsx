@@ -1,5 +1,5 @@
 import { View, StyleSheet } from "react-native";
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 import IconButton from "../../components/UI/IconButton";
 import { Colors } from "../../utils/colors";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -10,8 +10,17 @@ import {
 } from "../../store/slices/expensesSlice";
 import ExpenseForm from "../../components/ManageExpense/ExpenseForm";
 import { ExpenseProp } from "../../interfaces/ExpenseProp";
-import { storeExpense, updateAnExpense, deleteAnExpense } from "../../services/ExpensesService";
+import {
+  storeExpense,
+  updateAnExpense,
+  deleteAnExpense,
+} from "../../services/ExpensesService";
+import LoadingOverlay from "../../components/UI/LoadingOverlay";
+import ErrorOverlay from "../../components/UI/ErrorOverlay";
+
 const ManageExpense = ({ route, navigation }: any) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>();
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
 
@@ -20,6 +29,7 @@ const ManageExpense = ({ route, navigation }: any) => {
     (expense) => expense.id === editedExpenseId
   );
   const dispatch = useAppDispatch();
+
   useLayoutEffect(() => {
     navigation.setOptions({
       title: isEditing ? "Edit Expense" : "Add Expense",
@@ -27,37 +37,56 @@ const ManageExpense = ({ route, navigation }: any) => {
   }, [isEditing, navigation]);
 
   async function deleteExpenseHandler() {
-    await deleteAnExpense(editedExpenseId);
-    dispatch(deleteExpense(editedExpenseId));
-    navigation.goBack();
-    
+    setIsSubmitting(true);
+    try {
+      await deleteAnExpense(editedExpenseId);
+      dispatch(deleteExpense(editedExpenseId));
+      navigation.goBack();
+    } catch (error) {
+      setError("Could not delete exoense - please try again later.");
+      setIsSubmitting(false);
+    }
   }
   function cancelHandler() {
     navigation.goBack();
   }
   async function confirmHandler(expenseData: ExpenseProp) {
-    if (isEditing) {
-      await updateAnExpense(editedExpenseId,expenseData);
-      dispatch(
-        updateExpense({
-          id: editedExpenseId,
-          description: expenseData.description,
-          amount: +expenseData.amount,
-          date: expenseData.date,
-        })
-      );
-    } else {
-      const id = storeExpense(expenseData);
-      dispatch(
-        addExpense({
-          id: id.toString(),
-          description: expenseData.description,
-          amount: +expenseData.amount,
-          date: expenseData.date,
-        })
-      );
+    setIsSubmitting(true);
+    try {
+      if (isEditing) {
+        await updateAnExpense(editedExpenseId, expenseData);
+        dispatch(
+          updateExpense({
+            id: editedExpenseId,
+            description: expenseData.description,
+            amount: +expenseData.amount,
+            date: expenseData.date,
+          })
+        );
+      } else {
+        const id = storeExpense(expenseData);
+        dispatch(
+          addExpense({
+            id: id.toString(),
+            description: expenseData.description,
+            amount: +expenseData.amount,
+            date: expenseData.date,
+          })
+        );
+      }
+      navigation.goBack();
+    } catch (error) {
+      setError("Could not save the data - please try again later.");
+      setIsSubmitting(false);
     }
-    navigation.goBack();
+  }
+
+  
+  if (error && !isSubmitting) {
+    return <ErrorOverlay message={error} />;
+  }
+  if (isSubmitting) {
+    return <LoadingOverlay />;
   }
   return (
     <View style={styles.container}>

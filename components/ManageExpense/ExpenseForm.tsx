@@ -22,7 +22,7 @@ const ExpenseForm: React.FC<expenseFormProps> = ({
 }) => {
   const [inputs, setInputs] = useState({
     amount: {
-      value: defaultValues ? (defaultValues.amount.toFixed(2)).toString() : "",
+      value: defaultValues ? (defaultValues.amount.toFixed(2)) : "",
       isValid: true,
     },
     date: {
@@ -56,7 +56,7 @@ const ExpenseForm: React.FC<expenseFormProps> = ({
     const description = inputs.description.value;
     
     const expenseData = {
-      amount: amount,
+      amount: +amount,
       date: date,
       description: description,
     };

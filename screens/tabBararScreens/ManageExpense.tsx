@@ -10,7 +10,7 @@ import {
 } from "../../store/slices/expensesSlice";
 import ExpenseForm from "../../components/ManageExpense/ExpenseForm";
 import { ExpenseProp } from "../../interfaces/ExpenseProp";
-
+import { storeExpense, updateAnExpense, deleteAnExpense } from "../../services/ExpensesService";
 const ManageExpense = ({ route, navigation }: any) => {
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
@@ -26,15 +26,18 @@ const ManageExpense = ({ route, navigation }: any) => {
     });
   }, [isEditing, navigation]);
 
-  function deleteExpenseHandler() {
-    navigation.goBack();
+  async function deleteExpenseHandler() {
+    await deleteAnExpense(editedExpenseId);
     dispatch(deleteExpense(editedExpenseId));
+    navigation.goBack();
+    
   }
   function cancelHandler() {
     navigation.goBack();
   }
-  function confirmHandler(expenseData: ExpenseProp) {
+  async function confirmHandler(expenseData: ExpenseProp) {
     if (isEditing) {
+      await updateAnExpense(editedExpenseId,expenseData);
       dispatch(
         updateExpense({
           id: editedExpenseId,
@@ -44,9 +47,10 @@ const ManageExpense = ({ route, navigation }: any) => {
         })
       );
     } else {
+      const id = storeExpense(expenseData);
       dispatch(
         addExpense({
-          id: editedExpenseId,
+          id: id.toString(),
           description: expenseData.description,
           amount: +expenseData.amount,
           date: expenseData.date,

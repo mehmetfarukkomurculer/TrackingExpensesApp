@@ -8,6 +8,11 @@ export function getFormattedDate(date: Date) {
   return date.toLocaleString("en-CA", options);
 }
 
-export function getDAteMinusDays(date: Date, days: number) {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate() - days);
+export function getDAteMinusDays(dateString: string, days: number) {
+  const date = new Date(dateString);
+
+  // Subtract the specified number of days
+  date.setDate(date.getDate() - days);
+
+  return date;
 }

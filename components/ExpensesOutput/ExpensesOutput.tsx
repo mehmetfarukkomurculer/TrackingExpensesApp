@@ -3,7 +3,7 @@ import ExpensesSummary from "./ExpensesSummary";
 import ExpensesList from "./ExpensesList";
 import { Colors } from "../../utils/colors";
 import { useEffect, useState } from "react";
-import { getDAteMinusDays } from "../../utils/date";
+import { getDAteMinusDays, getFormattedDate } from "../../utils/date";
 import Filter from "../UI/Filter";
 import { TemporaryProps } from "../../interfaces/TemporaryProps";
 
@@ -28,7 +28,7 @@ const ExpensesOutput: React.FC<ExpensesOutputProps> = ({
 
   function filterLastWeek() {
     const lastWeekExpenses = expenses.filter((expense) => {
-      const today = new Date();
+      const today = getFormattedDate(new Date());
       const dateLastWeek = getDAteMinusDays(today, 7);
       const expenseDate = new Date(expense.date);
       return expenseDate > dateLastWeek;
@@ -45,7 +45,7 @@ const ExpensesOutput: React.FC<ExpensesOutputProps> = ({
   }
   function filterLastMonth() {
     const lastMonthExpenses = expenses.filter((expense) => {
-      const today = new Date();
+      const today = getFormattedDate(new Date());
       const dateLastMonth = getDAteMinusDays(today, 30);
       const expenseDate = new Date(expense.date);
       return expenseDate > dateLastMonth;
@@ -57,7 +57,7 @@ const ExpensesOutput: React.FC<ExpensesOutputProps> = ({
 
   function filterLast3Months() {
     const last3MonthsExpenses = expenses.filter((expense) => {
-      const today = new Date();
+      const today = getFormattedDate(new Date());
       const dateLast3Months = getDAteMinusDays(today, 91);
       const expenseDate = new Date(expense.date);
       return expenseDate > dateLast3Months;
@@ -69,7 +69,7 @@ const ExpensesOutput: React.FC<ExpensesOutputProps> = ({
 
   function filterLast6Months() {
     const filterLast6Months = expenses.filter((expense) => {
-      const today = new Date();
+      const today = getFormattedDate(new Date());
       const dateLast6Months = getDAteMinusDays(today, 182);
       const expenseDate = new Date(expense.date);
       return expenseDate > dateLast6Months;

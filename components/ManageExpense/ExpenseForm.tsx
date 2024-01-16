@@ -22,11 +22,11 @@ const ExpenseForm: React.FC<expenseFormProps> = ({
 }) => {
   const [inputs, setInputs] = useState({
     amount: {
-      value: defaultValues ? defaultValues.amount.toString() : "",
+      value: defaultValues ? (defaultValues.amount.toFixed(2)).toString() : "",
       isValid: true,
     },
     date: {
-      value: defaultValues ? defaultValues.date : "",
+      value: defaultValues ? getFormattedDate(new Date(defaultValues.date)) : "",
       isValid: true,
     },
     description: {
@@ -97,7 +97,7 @@ const ExpenseForm: React.FC<expenseFormProps> = ({
           textInputConfig={{
             keyboardType: "numeric",
             onChangeText: inputChangedHandler.bind(this, "amount"),
-            value: (parseFloat(inputs.amount.value).toFixed(2)).toString(),
+            value: inputs.amount.value,
           }}
           style={styles.rowInput}
         />
@@ -108,7 +108,7 @@ const ExpenseForm: React.FC<expenseFormProps> = ({
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
             onChangeText: inputChangedHandler.bind(this, "date"),
-            value: getFormattedDate(new Date(inputs.date.value)),
+            value: inputs.date.value,
           }}
           style={styles.rowInput}
         />
